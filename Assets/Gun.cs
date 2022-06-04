@@ -6,7 +6,6 @@ public class Gun : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletSpawnTransform;
-    public float bulletSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +19,6 @@ public class Gun : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, bulletSpawnTransform.rotation);
-            bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * bulletSpeed);
         }
     }
 }

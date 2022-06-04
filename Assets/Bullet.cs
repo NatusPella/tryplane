@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float bulletSpeed = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        GetComponent<Rigidbody2D>().AddForce(transform.forward * bulletSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D other)

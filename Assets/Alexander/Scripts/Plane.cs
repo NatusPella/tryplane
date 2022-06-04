@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Tryplane.Alexander
 {
-    public class PlaneMovement : MonoBehaviour
+    public class Plane : MonoBehaviour
     {
+        public GameObject destroyedPrefab;
+
         private float forcedHorizontalSpeed = 5f;
         private float lift = 25f;
         new private Rigidbody2D rigidbody2D;
@@ -32,6 +34,17 @@ namespace Tryplane.Alexander
                 float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Bullet"))
+            {
+                return;
+            }
+
+            Instantiate(destroyedPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
     }
 }

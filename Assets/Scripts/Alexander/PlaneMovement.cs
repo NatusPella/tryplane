@@ -2,35 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tryplane.Alexander;
-
-public class PlaneMovement : MonoBehaviour
+namespace Tryplane.Alexander
 {
-    private float forcedHorizontalSpeed = 5f;
-    private float lift = 25f;
-    private Rigidbody2D rigidbody2D;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlaneMovement : MonoBehaviour
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        private float forcedHorizontalSpeed = 5f;
+        private float lift = 25f;
+        private Rigidbody2D rigidbody2D;
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        //rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
-
-        if (Input.GetKey(KeyCode.W))
+        // Start is called before the first frame update
+        void Start()
         {
-            rigidbody2D.AddForce(Vector2.up * lift);
+            rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
-        Vector2 moveDirection = rigidbody2D.velocity;
-        if (moveDirection != Vector2.zero)
+        // Update is called once per frame
+        void FixedUpdate()
         {
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                rigidbody2D.AddForce(Vector2.up * lift);
+            }
+
+            Vector2 moveDirection = rigidbody2D.velocity;
+            if (moveDirection != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
         }
     }
-}

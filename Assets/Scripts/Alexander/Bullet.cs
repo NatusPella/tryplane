@@ -2,31 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tryplane.Alexander;
-
-public class Bullet : MonoBehaviour
+namespace Tryplane.Alexander
 {
-    public float bulletSpeed = 10f;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Bullet : MonoBehaviour
     {
-        Destroy(gameObject, 1.5f);
-    }
+        public float bulletSpeed = 10f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        GetComponent<Rigidbody2D>().AddForce(transform.forward * bulletSpeed);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
+        // Start is called before the first frame update
+        void Start()
         {
-            return;
+            Destroy(gameObject, 1.5f);
         }
 
-        Destroy(gameObject);
+        // Update is called once per frame
+        void Update()
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.forward * bulletSpeed);
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
+            {
+                return;
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

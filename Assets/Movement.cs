@@ -58,12 +58,8 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-
-        Vector3.Angle(Vector3.up, rigidbody2D.velocity);
-
-            transform
+            rigidbody2D.AddForce(Vector2.up * initialSpeed * Time.fixedDeltaTime);
         }
-
 
 
 

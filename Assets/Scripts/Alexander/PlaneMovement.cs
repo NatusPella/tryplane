@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Tryplane.Alexander;
+
 public class PlaneMovement : MonoBehaviour
 {
     private float forcedHorizontalSpeed = 5f;

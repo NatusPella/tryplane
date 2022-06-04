@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Tryplane.Alexander;
+
 public class Gun : MonoBehaviour
 {
     public GameObject bulletPrefab;

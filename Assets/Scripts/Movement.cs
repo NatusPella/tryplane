@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-           
+
         }
 
 

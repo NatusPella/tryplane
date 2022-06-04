@@ -19,7 +19,6 @@ namespace Tryplane.Alexander
         // Update is called once per frame
         void FixedUpdate()
         {
-            //rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
             rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
 
             if (Input.GetKey(KeyCode.W))

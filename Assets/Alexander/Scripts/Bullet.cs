@@ -6,7 +6,7 @@ namespace Tryplane.Alexander
 {
     public class Bullet : MonoBehaviour
     {
-        public float bulletSpeed = 10f;
+        public float bulletSpeed = 100f;
 
         // Start is called before the first frame update
         void Start()

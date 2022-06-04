@@ -7,7 +7,7 @@ namespace Tryplane.Alexander
     public class TrackGameObject : MonoBehaviour
     {
 
-        public GameObject gameObject;
+        public GameObject gameObjectToTrack;
         public Vector3 offset;
 
         // Start is called before the first frame update
@@ -19,7 +19,7 @@ namespace Tryplane.Alexander
         // Update is called once per frame
         void Update()
         {
-            transform.position = gameObject.transform.position + offset;
+            transform.position = gameObjectToTrack.transform.position + offset;
         }
     }
 }

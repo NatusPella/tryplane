@@ -8,7 +8,7 @@ namespace Tryplane.Alexander
     {
         private float forcedHorizontalSpeed = 5f;
         private float lift = 25f;
-        private Rigidbody2D rigidbody2D;
+        new private Rigidbody2D rigidbody2D;
 
         // Start is called before the first frame update
         void Start()
@@ -20,6 +20,7 @@ namespace Tryplane.Alexander
         void FixedUpdate()
         {
             //rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
+            rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
 
             if (Input.GetKey(KeyCode.W))
             {
@@ -34,3 +35,4 @@ namespace Tryplane.Alexander
             }
         }
     }
+}

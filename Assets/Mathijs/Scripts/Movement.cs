@@ -8,7 +8,7 @@ namespace Tryplane.Mathijs
     {
         private float initialSpeed = 25f;
         private float boosterSpeed = 5f;
-        private Rigidbody2D rigidbody2D;
+        new private Rigidbody2D rigidbody2D;
         private bool facingRight = true;
 
         // Start is called before the first frame update

@@ -19,6 +19,11 @@ namespace Tryplane.Alexander
         // Update is called once per frame
         void Update()
         {
+            if (gameObjectToTrack == null)
+            {
+                return;
+            }
+
             transform.position = gameObjectToTrack.transform.position + offset;
         }
     }

@@ -7,57 +7,50 @@ namespace Tryplane.Mathijs
 {
     public class PlaneMovement : MonoBehaviour
     {
-        private float forcedHorizontalSpeed = 5f;
-        private float power = 5f;
+        private float forcedHorizontalSpeed = 15f;
         new private Rigidbody2D rigidbody2D;
 
         private float velocity;
         private float magnitude;
-        private float maxEngineSpeed = 10f;
+        private float maxEngineSpeed = 30f;
 
-        private bool engineOn = true;
+        public bool engineOn = true;
 
         // Start is called before the first frame update
         void Start()
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
-
-            // Initial force
-            rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed * 200f);
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical") * power);
-
-            Vector2 moveDirection = rigidbody2D.velocity;
-            if (moveDirection != Vector2.zero)
+            if (GetComponent<Flip>().isFlipped)
             {
-                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.RotateAround(transform.position, Vector3.forward, 5f * Input.GetAxis("Vertical"));
+
+            }
+            else
+            {
+                transform.RotateAround(transform.position, Vector3.forward, 5f * -Input.GetAxis("Vertical"));
+
             }
 
             if (engineOn)
             {
-                rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
+                if (rigidbody2D.velocity.x < maxEngineSpeed)
+                {
+                    rigidbody2D.velocity = transform.right * forcedHorizontalSpeed;
+                }
             }
-
-            Debug.Log("Engine is: " + engineOn);
         }
+
+
 
         void Update()
         {
-            velocity = rigidbody2D.velocity.magnitude;
-            magnitude = rigidbody2D.velocity.magnitude;
-
-            if (Input.GetKey(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                // if (velocity < maxEngineSpeed)
-                // {
-                //     velocity += acceleration;
-                // }
-
                 engineOn = !engineOn;
             }
         }

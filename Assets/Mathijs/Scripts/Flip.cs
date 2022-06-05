@@ -6,6 +6,9 @@ namespace Tryplane.Mathijs
 {
     public class Flip : MonoBehaviour
     {
+
+public bool isFlipped = false;
+
         new private Rigidbody2D rigidbody2D;
 
         // Start is called before the first frame update
@@ -18,10 +21,15 @@ namespace Tryplane.Mathijs
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            if (isFlipped)
             {
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
-
-
+                isFlipped = false;
+                rigidbody2D.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            }
+            else
+            {
+                isFlipped = true;
+                rigidbody2D.transform.localScale = new Vector3(0.5f, -0.5f, 0.5f);
             }
         }
     }

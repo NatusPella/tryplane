@@ -9,6 +9,8 @@ namespace Tryplane.Alexander
         public GameObject bulletPrefab;
         public Transform bulletSpawnTransform;
 
+        public int ammo = 10000;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -20,7 +22,11 @@ namespace Tryplane.Alexander
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, bulletSpawnTransform.rotation);
+                if (ammo > 0)
+                {
+                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, bulletSpawnTransform.rotation);
+                    ammo--;
+                }
             }
         }
     }

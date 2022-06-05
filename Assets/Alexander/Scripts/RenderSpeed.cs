@@ -21,7 +21,7 @@ namespace Tryplane.Alexander
         {
             if (gameObjectToDisplay != null)
             {
-                text.text = "Speed: " + gameObjectToDisplay.GetComponent<Rigidbody2D>().velocity.magnitude;
+                text.text = "Speed: " + (gameObjectToDisplay.GetComponent<Rigidbody2D>().velocity.magnitude * 10).ToString("N0") + "kmph";
             }
         }
     }

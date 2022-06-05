@@ -5,7 +5,7 @@ using TMPro;
 
 namespace Tryplane.Alexander
 {
-    public class RenderAltitude : MonoBehaviour
+    public class RenderAmmo : MonoBehaviour
     {
         public GameObject gameObjectToDisplay;
         private TMP_Text text;
@@ -21,7 +21,7 @@ namespace Tryplane.Alexander
         {
             if (gameObjectToDisplay != null)
             {
-                text.text = "Altitude: " + (gameObjectToDisplay.transform.position.y - 1).ToString("N0") + "m";
+                text.text = "Ammo: " + (gameObjectToDisplay.GetComponent<Gun>().ammo).ToString("N0");
             }
         }
     }

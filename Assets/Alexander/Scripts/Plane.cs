@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tryplane.Alexander
@@ -34,6 +32,11 @@ namespace Tryplane.Alexander
                 float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
+
+            if (Input.GetButton("Boost"))
+            {
+                rigidbody2D.AddForce(transform.right * 100f);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -43,13 +46,12 @@ namespace Tryplane.Alexander
                 return;
             }
 
-            Instantiate(destroyedPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (rigidbody2D.velocity.y < -10f)
+            {
+                Instantiate(destroyedPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
 
-        private void restart()
-        {
-
-        }
     }
 }

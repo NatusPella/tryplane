@@ -1,0 +1,124 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+namespace Tryplane.Mathijs
+{
+    public class PlaneMovement : MonoBehaviour
+    {
+        public float speed;
+        public float acceleration;
+        public float thrust = 1000f;
+        Rigidbody2D rigidbody2D;
+
+        public float rotationControl;
+
+        float movY, movX = 1;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            movY = Input.GetAxis("Vertical");
+        }
+
+
+        private void FixedUpdate()
+        {
+            Vector2 velocity = transform.right * (movX * acceleration);
+            rigidbody2D.AddForce(velocity);
+
+            float direction = Vector2.Dot(rigidbody2D.velocity, rigidbody2D.GetRelativeVector(Vector2.up));
+
+            if (acceleration > 0)
+            {
+                if (direction > 0)
+                {
+                    rigidbody2D.rotation += movY * rotationControl * (rigidbody2D.velocity.magnitude / speed);
+                }
+                else
+                {
+                    rigidbody2D.rotation -= movY * rotationControl * (rigidbody2D.velocity.magnitude / speed);
+                }
+            }
+            float thrustforce = Vector2.Dot(rigidbody2D.velocity, rigidbody2D.GetRelativeVector(Vector2.down)) * thrust;
+
+            Vector2 relativeForce = Vector2.up * thrustforce;
+
+            rigidbody2D.AddForce(rigidbody2D.GetRelativeVector(relativeForce));
+
+
+            if (rigidbody2D.velocity.magnitude > speed)
+            {
+                rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
+            }
+        }
+    }
+}
+
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+
+// namespace Tryplane.Mathijs
+// {
+//     public class PlaneMovement : MonoBehaviour
+//     {
+//         private float speed = 6f;
+//         private float acceleration = 4;
+//         new Rigidbody2D rigidbody2D;
+
+//         private float rotationControl = 20000;
+
+//         float movX = 100f;
+//         float movY = 100f;
+
+//         void Start()
+//         {
+//             rigidbody2D = GetComponent<Rigidbody2D>();
+//         }
+
+//         void Update()
+//         {
+//             movY = Input.GetAxis("Horizontal");
+//         }
+
+//         private void FixedUpdate()
+//         {
+//             Vector2 velocity = transform.right * (movX * acceleration);
+//             rigidbody2D.AddForce(velocity);
+
+//             float direction = Vector2.Dot(rigidbody2D.velocity, rigidbody2D.GetRelativeVector(Vector2.right));
+
+//             if (acceleration > 0)
+//             {
+//                 if (direction > 0)
+//                 {
+//                     rigidbody2D.rotation += movY * rotationControl * (rigidbody2D.velocity.magnitude / speed);
+//                 }
+//                 else
+//                 {
+//                     rigidbody2D.rotation -= movY * rotationControl * (rigidbody2D.velocity.magnitude / speed);
+//                 }
+//             }
+
+//             float thrustForce = Vector2.Dot(rigidbody2D.velocity, rigidbody2D.GetRelativeVector(Vector2.down)) * 2f;
+
+//             Vector2 relativeForce = Vector2.up * thrustForce;
+
+//             rigidbody2D.AddForce(rigidbody2D.GetRelativeVector(relativeForce));
+
+//             if (rigidbody2D.velocity.magnitude > speed)
+//             {
+//                 rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
+//             }
+
+//         }
+//     }
+// }

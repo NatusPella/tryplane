@@ -30,14 +30,19 @@ namespace Tryplane.Alexander
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (other.gameObject.CompareTag("Bullet"))
+            if (collision.gameObject.CompareTag("Bullet"))
             {
                 return;
             }
 
-            Instantiate(destroyedPrefab, transform.position, transform.rotation);
+            Explode(collision.contacts[0].point);
+        }
+
+        public void Explode(Vector3 position)
+        {
+            Instantiate(destroyedPrefab, position, transform.rotation);
             Destroy(gameObject);
         }
 

@@ -17,7 +17,7 @@ namespace Tryplane.Alexander
         // Update is called once per frame
         void Update()
         {
-            GetComponent<Rigidbody2D>().AddForce(transform.forward * bulletSpeed);
+            GetComponent<Rigidbody2D>().AddForce(transform.right * bulletSpeed);
         }
 
         void OnTriggerEnter2D(Collider2D other)
@@ -25,6 +25,12 @@ namespace Tryplane.Alexander
             if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
             {
                 return;
+            }
+
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(other.gameObject);
+                Debug.Log("Deleted enemy");
             }
 
             Destroy(gameObject);

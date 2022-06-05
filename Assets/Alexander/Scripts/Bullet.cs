@@ -30,7 +30,7 @@ namespace Tryplane.Alexander
             if (other.gameObject.CompareTag("Enemy"))
             {
                 Destroy(other.gameObject);
-                Debug.Log("Deleted enemy");
+                //Debug.Log("Deleted enemy");
             }
 
             Destroy(gameObject);

@@ -42,6 +42,11 @@ namespace Tryplane.Alexander
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
+            {
+                return;
+            }
+
             if (collision.gameObject.tag == "Player")
             {
                 collision.gameObject.GetComponent<Plane>().Explode(collision.contacts[0].point);

@@ -9,24 +9,24 @@ namespace Tryplane.Alexander
         public GameObject destroyedPrefab;
 
         private float forcedHorizontalSpeed = 5f;
-        private float lift = 25f;
+        private float power = 25f;
         new private Rigidbody2D rigidbody2D;
 
         // Start is called before the first frame update
         void Start()
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
+
+            rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed * 100f);
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
+            //rigidbody2D.AddForce(Vector2.right * forcedHorizontalSpeed);
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                rigidbody2D.AddForce(Vector2.up * lift);
-            }
+            rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical") * power);
+            rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal") * power);
 
             Vector2 moveDirection = rigidbody2D.velocity;
             if (moveDirection != Vector2.zero)
@@ -45,6 +45,11 @@ namespace Tryplane.Alexander
 
             Instantiate(destroyedPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
+        }
+
+        private void restart()
+        {
+
         }
     }
 }

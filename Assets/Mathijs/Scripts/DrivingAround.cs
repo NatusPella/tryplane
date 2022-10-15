@@ -50,7 +50,12 @@ public class DrivingAround : MonoBehaviour
             }
             else
             {
-                GetComponent<SpriteRenderer>().flipX = endPosition.x - transform.position.x > 0;
+                if (endPosition.x - transform.position.x > 0) {
+                    transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                } else {
+                    transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                }
+                
 
                 float step = speed * Time.deltaTime; // calculate distance to move
                 transform.position = Vector3.MoveTowards(transform.position, endPosition, step);

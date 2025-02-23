@@ -22,7 +22,7 @@ namespace Tryplane.Alexander
             rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical") * power);
             rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal") * power);
 
-            Vector2 moveDirection = rigidbody2D.velocity;
+            Vector2 moveDirection = rigidbody2D.linearVelocity;
             if (moveDirection != Vector2.zero)
             {
                 float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;

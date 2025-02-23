@@ -26,8 +26,8 @@ namespace Tryplane.Mathijs
 
             Debug.Log(rigidbody2D.rotation);
 
-            float horizontalVelocity = Vector2.Dot(rigidbody2D.velocity, Vector2.right);
-            float verticalVelocity = Vector2.Dot(rigidbody2D.velocity, Vector2.up);
+            float horizontalVelocity = Vector2.Dot(rigidbody2D.linearVelocity, Vector2.right);
+            float verticalVelocity = Vector2.Dot(rigidbody2D.linearVelocity, Vector2.up);
             float height = transform.position.y;
 
             inAir = height > 0.5f;

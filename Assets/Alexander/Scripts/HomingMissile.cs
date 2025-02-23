@@ -29,9 +29,9 @@ namespace Tryplane.Alexander
                 Vector3.Distance(transform.position, target.transform.position) < 50000000f
             )
             {
-                rigidbody2D.velocity = ((Vector2)(target.transform.position - transform.position)).normalized * 40f;
+                rigidbody2D.linearVelocity = ((Vector2)(target.transform.position - transform.position)).normalized * 40f;
 
-                Vector2 moveDirection = rigidbody2D.velocity;
+                Vector2 moveDirection = rigidbody2D.linearVelocity;
                 if (moveDirection != Vector2.zero)
                 {
                     float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;

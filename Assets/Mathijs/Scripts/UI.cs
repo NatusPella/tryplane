@@ -17,7 +17,7 @@ public class UI : MonoBehaviour
     {
         if (gameObjectToDisplay != null)
         {
-            airSpeedDisplay.text = "Airspeed: " + (gameObjectToDisplay.GetComponent<Rigidbody2D>().velocity.magnitude);
+            airSpeedDisplay.text = "Airspeed: " + (gameObjectToDisplay.GetComponent<Rigidbody2D>().linearVelocity.magnitude);
         }
     }
 }

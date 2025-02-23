@@ -38,9 +38,9 @@ namespace Tryplane.Mathijs
 
             if (engineOn)
             {
-                if (rigidbody2D.velocity.x < maxEngineSpeed)
+                if (rigidbody2D.linearVelocity.x < maxEngineSpeed)
                 {
-                    rigidbody2D.velocity = transform.right * forcedHorizontalSpeed;
+                    rigidbody2D.linearVelocity = transform.right * forcedHorizontalSpeed;
                 }
             }
         }
